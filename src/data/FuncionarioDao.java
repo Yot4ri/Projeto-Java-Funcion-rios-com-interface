@@ -8,16 +8,19 @@ import java.sql.SQLException;
 
 public class FuncionarioDao {
     
-    Connection conn;
-    PreparedStatement st;
-    ResultSet rs;
+    private Connection conn;
+    private PreparedStatement st;
+    private ResultSet rs;
     
     public boolean conectar(){
+        String url = "jdbc:mysql://localhost:3306/exemplo_senac";
+        String usuario = "root";
+        String senha = ""; //Substitua pela senha correta;
+        
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/exemplo_senac","root","");
+            conn = DriverManager.getConnection(url,usuario,senha);
             return true;
-        } catch (ClassNotFoundException | SQLException ex) {
+        }catch (SQLException ex){
             System.out.println("Erro ao conectar: " + ex.getMessage());
             return false;
         }
